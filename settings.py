@@ -117,8 +117,11 @@ REST_FRAMEWORK = {
 }
 
 # CORS settings
-CORS_ALLOW_ALL_ORIGINS = True  # For development purposes, be more restrictive in production
-
+CORS_ALLOWED_ORIGINS = [
+    "https://rohan-xtha.github.io",  # Your GitHub Pages URL
+    "http://localhost:5173",  # Local development URL
+    "http://127.0.0.1:5173",  # Alternative local URL
+]
 # Simple JWT settings
 from datetime import timedelta
 
