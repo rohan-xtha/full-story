@@ -122,7 +122,6 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",  # Local development URL
     "http://127.0.0.1:5173",  # Alternative local URL
 ]  # For development purposes, be more restrictive in production
-
 # Simple JWT settings
 from datetime import timedelta
 
