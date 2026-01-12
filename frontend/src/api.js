@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Create an axios instance with the backend base URL
 const api = axios.create({
-  baseURL: 'http://127.0.0.1:8000/api/',
+  baseURL: 'https://rohanmaske.pythonanywhere.com/',
 });
 
 // Add a request interceptor to include the JWT token in headers
