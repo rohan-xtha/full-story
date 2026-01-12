@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import api from '../api';
+import api from '../utils/api';
 
 const StoryForm = () => {
   const { id } = useParams();

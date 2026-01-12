@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import api from '../api';
+import api from '../utils/api';
 
 const StoryDetail = () => {
   const { id } = useParams();
