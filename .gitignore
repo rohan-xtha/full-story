@@ -20,3 +20,9 @@ logs/
 .env
 .env.local
 .env.production
+
+# Node.js dependencies
+node_modules/
+
+# Frontend build output
+dist/

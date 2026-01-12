@@ -1,3 +1,4 @@
+import React from 'react';
 import { Link, Outlet, useNavigate, useLocation } from 'react-router-dom';
 
 const Layout = () => {
@@ -25,13 +26,13 @@ const Layout = () => {
       <header className="w-full bg-black text-yellow-400 py-2">
         <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
           <div className="flex space-x-8">
-            <Link to="/video" className="text-lg font-medium hover:text-yellow-300 transition-colors">
-              Video
-            </Link>
-            <Link to="/" className="text-lg font-medium hover:text-yellow-300 transition-colors">
-              Story
-            </Link>
-          </div>
+              <Link to="/" className="text-lg font-medium hover:text-yellow-300 transition-colors">
+                Video
+              </Link>
+              <Link to="/" className="text-lg font-medium hover:text-yellow-300 transition-colors">
+                Story
+              </Link>
+            </div>
           <div className="flex items-center space-x-4">
             {isAuthenticated && (
               <Link 
@@ -41,24 +42,17 @@ const Layout = () => {
                 Post Story
               </Link>
             )}
-            {isAuthenticated ? (
+            {isAuthenticated && (
               <button onClick={handleLogout} className="px-5 py-2 bg-red-500/20 text-red-400 border border-red-500/50 rounded-lg hover:bg-red-500 hover:text-white transition-all">
                 Logout
               </button>
-            ) : (
-              <>
-                <Link to="/login" className="px-5 py-2 text-yellow-400 hover:text-yellow-300 transition-colors">Login</Link>
-                <Link to="/register" className="px-5 py-2 bg-red-600 rounded-lg font-medium hover:bg-red-700 transition-all">
-                  Register
-                </Link>
-              </>
             )}
           </div>
         </div>
       </header>
 
       {/* Hero Section - Only on Home Page */}
-      {!['/login', '/register'].includes(location.pathname) && (
+      {location.pathname === '/' && (
         <section className="flex flex-col items-center justify-center min-h-[80vh] px-4">
           {/* Glowing Book Icon */}
           <div className="relative mb-8">
@@ -86,30 +80,57 @@ const Layout = () => {
             </div>
           </div>
 
-          {/* Welcome Box */}
+          {/* Welcome Box - Different content based on authentication */}
           <div className="bg-gray-800/90 rounded-xl p-8 max-w-md w-full text-center shadow-xl">
-            <h1 className="text-3xl font-bold mb-4">
-              Welcome to <span className="text-yellow-400">StoryVerse!</span>
-            </h1>
-            <p className="text-gray-300 mb-8">
-              Dive into a world of imagination and thrilling stories with StoryVerse.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                to={isAuthenticated ? "/create" : "/register"}
-                className="inline-block px-8 py-3 bg-red-600 text-white rounded-lg font-semibold text-lg transition-all duration-300 hover:bg-red-700 hover:shadow-lg"
-              >
-                Start Your Adventure
-              </Link>
-              {isAuthenticated && (
-                <Link
-                  to="/create"
-                  className="inline-block px-8 py-3 bg-transparent border-2 border-white text-white rounded-lg font-semibold text-lg transition-all duration-300 hover:bg-white/10"
-                >
-                  Post Your Story
-                </Link>
-              )}
-            </div>
+            {isAuthenticated ? (
+              // Logged-in interface
+              <>
+                <h1 className="text-3xl font-bold mb-4">
+                  Welcome back to <span className="text-yellow-400">StoryVerse!</span>
+                </h1>
+                <p className="text-gray-300 mb-8">
+                  Continue your literary journey and explore amazing stories.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Link
+                    to="/explore"
+                    className="inline-block px-8 py-3 bg-red-600 text-white rounded-lg font-semibold text-lg transition-all duration-300 hover:bg-red-700 hover:shadow-lg"
+                  >
+                    Start Your Adventure
+                  </Link>
+                  <Link
+                    to="/create"
+                    className="inline-block px-8 py-3 bg-transparent border-2 border-white text-white rounded-lg font-semibold text-lg transition-all duration-300 hover:bg-white/10"
+                  >
+                    Post Your Story
+                  </Link>
+                </div>
+              </>
+            ) : (
+              // Logged-out interface
+              <>
+                <h1 className="text-3xl font-bold mb-4">
+                  Welcome to <span className="text-yellow-400">StoryVerse!</span>
+                </h1>
+                <p className="text-gray-300 mb-8">
+                  Join our community of storytellers and readers.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Link
+                    to="/login"
+                    className="inline-block px-8 py-3 bg-red-600 text-white rounded-lg font-semibold text-lg transition-all duration-300 hover:bg-red-700 hover:shadow-lg"
+                  >
+                    Login to Explore
+                  </Link>
+                  <Link
+                    to="/register"
+                    className="inline-block px-8 py-3 bg-transparent border-2 border-white text-white rounded-lg font-semibold text-lg transition-all duration-300 hover:bg-white/10"
+                  >
+                    Create Account
+                  </Link>
+                </div>
+              </>
+            )}
           </div>
         </section>
       )}

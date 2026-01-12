@@ -8,10 +8,11 @@ import StoryForm from './components/StoryForm';
 
 function App() {
   return (
-    <Router>
+    <Router basename="/full-story">
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<StoryList />} />
+          <Route index element={<></>} />
+          <Route path="explore" element={<StoryList />} />
           <Route path="stories/:id" element={<StoryDetail />} />
           <Route path="create" element={<StoryForm />} />
           <Route path="edit/:id" element={<StoryForm />} />
