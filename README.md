@@ -49,7 +49,8 @@ full-story/
 ```bash
 git clone https://github.com/rohan-xtha/full-story.git
 cd full-story
-🌍 Deployment
+
+###🌍 Deployment
 
 This project can be deployed easily using:
 
